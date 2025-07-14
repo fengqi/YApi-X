@@ -73,7 +73,7 @@ export function readBase64File<T extends 'text' | 'dataUrl' | 'arrayBuffer'>(
 
 export function injectJs(path: string): void {
   const js = document.createElement('script')
-  js.src = chrome.extension.getURL(path)
+  js.src = chrome.runtime.getURL(path)
   js.onload = () => js.remove()
   ;(document.head || document.documentElement).appendChild(js)
 }

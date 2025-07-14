@@ -2,33 +2,33 @@
   "name": "YApi-X",
   "description": "YApi-X 浏览器插件。",
   "version": "1.2.1",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "128": "logo.png"
   },
-  "permissions": [
-		"http://*/*",
-    "https://*/*",
-    "webRequest",
-    "webRequestBlocking"
-	],
-  "background": {
-    "scripts": [
-      "background.js"
-    ]
-  },
-  "web_accessible_resources": [
-    "adapter.js"
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
+  "permissions": [
+    "webRequest"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [{
+    "resources": ["adapter.js"],
+    "matches": ["<all_urls>"]
+  }],
   "content_scripts": [
-		{
-			"matches": [
+    {
+      "matches": [
         "http://*/*",
         "https://*/*"
-			],
-			"js": [
-				"runtime.js"
-			]
-		}
-	]
+      ],
+      "js": [
+        "runtime.js"
+      ]
+    }
+  ]
 }
