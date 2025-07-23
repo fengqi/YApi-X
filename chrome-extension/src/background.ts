@@ -19,10 +19,8 @@ chrome.runtime.onMessage.addListener(
       switch (request.type) {
         case YAPIX.BACKGROUND_HTTP_REQUEST_TYPE:
           if (request.options.headers) {
-            // Store original headers for later use
             const originalHeaders = { ...request.options.headers };
-            // Add a special header to identify our requests
-            request.options.headers[YAPIX.HTTP_HEADERS_KEY] = JSON.stringify(originalHeaders);
+            request.options.headers["X-YApi-User-Agent"] = originalHeaders['User-Agent']
           }
           if (isPlainObject(request.options.body) && request.options.body[YAPIX.FILE_BODY_KEY] === true) {
             const YApiXFileBody = { ...request.options.body }
